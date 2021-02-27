@@ -1,0 +1,51 @@
+# GROUP BY 유형의 문제들
+
+### 고양이와 개는 몇마리 있을까
+
+```sql
+SELECT ANIMAL_TYPE, COUNT(ANIMAL_TYPE) AS count FROM ANIMAL_INS
+WHERE ANIMAL_TYPE = 'Cat' OR ANIMAL_TYPE = 'Dog'
+GROUP BY ANIMAL_TYPE
+ORDER BY ANIMAL_TYPE
+```
+
+
+
+### 동명 동물 수 찾기
+
+``` sql
+SELECT NAME, COUNT(NAME) AS COUNT FROM ANIMAL_INS
+WHERE NAME IS NOT NULL
+GROUP BY NAME
+HAVING COUNT(NAME) >= 2
+ORDER BY NAME
+```
+
+
+
+### 입양 시각 구하기(1)
+
+```sql
+SELECT HOUR(DATETIME) AS HOUR, COUNT(ANIMAL_ID) AS COUNT FROM ANIMAL_OUTS
+WHERE HOUR(DATETIME) BETWEEN 9 AND 19
+GROUP BY HOUR(DATETIME)
+ORDER BY HOUR(DATETIME)
+```
+
+
+
+### 입양 시각 구하기(2)
+
+```sql
+SET @HOUR_LIST = -1;
+SELECT
+(@HOUR_LIST := @HOUR_LIST + 1) AS HOUR, -- Where 조건 절에 만족할 때까지 지속 반복
+(SELECT COUNT(ANIMAL_ID) FROM ANIMAL_OUTS
+WHERE @HOUR_LIST = HOUR(DATETIME)) AS COUNT
+-- 여기 까지가 Column 명칭 정하기 코드.
+FROM ANIMAL_OUTS
+WHERE @HOUR_LIST < 23;
+```
+
+- 프로그래머스 문제 중 최고 난이도이다.
+- 출력 형식을(모양) 내 마음대로 조절 할 수 있는지가 관건인 것 같다.
