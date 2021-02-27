@@ -15,7 +15,9 @@
 
 
 
-### 프로젝트 링크
+### 프로젝트 및 sql 문제 풀이 목록 링크
 
 - [미국 관세청 제공 무역 데이터와 SQL을 이용한 잠재바이어 발굴](https://github.com/brotherspear1994/SQL-study/tree/master/DiscoveryOfPotentialBuyerWithSql)
 - [SQL을 이용한 문화재 데이터 검사 및 조작](https://github.com/brotherspear1994/SQL-study/tree/master/HeritageDataProfilingWithSql) 
+- [프로그래머스 SQL 코딩테스트](https://github.com/brotherspear1994/SQL-study/tree/master/ProgrammersSqlCodingTest)
+
